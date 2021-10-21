@@ -34,9 +34,34 @@ const ChannelListContainer = () => {
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />
+        <ChannelList
+          filters={{}}
+          channelRenderFilterFn={() => {}}
+          List={(listProps) => <TeamChannelList {...listProps} type="team" />}
+          Preview={(previewPros) => (
+            <TeamChannelPreview {...previewPros} type="team" />
+          )}
+        />
+        <ChannelList
+          filters={{}}
+          channelRenderFilterFn={() => {}}
+          List={(listProps) => (
+            <TeamChannelList {...listProps} type="messaging" />
+          )}
+          Preview={(previewPros) => (
+            <TeamChannelPreview {...previewPros} type="messaging" />
+          )}
+        />
       </div>
     </>
   );
 };
 
+//ChannelListについて　こいつはStream Chat APIからチャネルオブジェクトの配列をクエリし、
+//UIにカスタマイズ可能なリストとして表示する
+//List={(listProps)}がいまだにわからない
+//https://getstream.io/chat/docs/sdk/reactnative/core-components/channel-list/
+
+//channelRenderFilterFnについて
+//https://getstream.io/chat/docs/sdk/react/custom-code-examples/multiple_channel_lists/
 export default ChannelListContainer;
