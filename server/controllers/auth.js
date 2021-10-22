@@ -1,7 +1,9 @@
 const { connect } = require("getstream");
 const bcrypt = require("bcrypt");
-const StreamChat = require("stream-chat");
+const StreamChat = require("stream-chat").StreamChat;
 const crypto = require("crypto");
+
+require("dotenv").config();
 
 const api_key = process.env.STREAM_API_KEY;
 const api_secret = process.env.STREAM_API_SECRET;
@@ -40,7 +42,8 @@ const login = async (req, res) => {
     //トークンの作成、ユーザーのアップサート(update+insert)、及びサーバー側でy美出す必要のある全てのメソッドで使用される
     //https://getstream.zendesk.com/hc/en-us/articles/1500012878921-Chat-Basic-Guide
 
-    const users = await client.queryUsers({ name: username });
+    const { users } = await client.queryUsers({ name: username });
+    //queryUsers（）は、アプリ内のユーザーの配列を含むオブジェクトを返します
 
     if (!users.length)
       return res.status(400).json({ message: "User not found" });
