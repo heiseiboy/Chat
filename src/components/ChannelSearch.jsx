@@ -39,6 +39,7 @@ const ChannelSearch = () => {
           onChange={onSearch}
         />
       </div>
+
     </div>
   )
 }
